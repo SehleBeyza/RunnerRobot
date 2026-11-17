@@ -103,8 +103,8 @@ namespace RunnerRobot
             // ====================== DEPENDENCY INJECTION & CQRS ======================
             var services = new ServiceCollection();
             services.AddLogging();
-            services.AddDbContext<AppDbContext>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+services.AddDbContext<AppDbContext>();
+services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper(cfg => cfg.AddProfile<RobotMappingProfile>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
@@ -927,11 +927,11 @@ namespace RunnerRobot
 
             // KALKAN DURUMU
             if (shieldTime > 0f)
-            {
+{
                 Raylib.DrawRectangle(255, 14, 130, 24, new Color(10, 10, 25, 210));
                 Raylib.DrawRectangleLines(255, 14, 130, 24, new Color(0, 240, 255, 200));
                 Raylib.DrawText($"🛡️ KALKAN: {shieldTime:0.0}s", 262, 19, 12, new Color(0, 255, 255, 255));
-            }
+}
 
             // SKOR (Sağ Üst)
             Raylib.DrawRectangle(730, 14, 214, 60, new Color(10, 10, 25, 210));
@@ -949,7 +949,7 @@ namespace RunnerRobot
         // ====================== OYUN ÖĞELERİ ÇİZİM METOTLARI ======================
 
         private static void DrawBackgroundSky(int screenWidth, float groundY)
-        {
+{
             Raylib.DrawCircle(120, 80, 1.5f, new Color(200, 220, 255, 120));
             Raylib.DrawCircle(280, 140, 2f, new Color(255, 200, 255, 140));
             Raylib.DrawCircle(520, 90, 1.5f, new Color(180, 240, 255, 130));
@@ -961,7 +961,7 @@ namespace RunnerRobot
                 new System.Numerics.Vector2(320, groundY - 140),
                 new System.Numerics.Vector2(440, groundY),
                 new Color(28, 24, 55, 255));
-
+    
             Raylib.DrawTriangle(
                 new System.Numerics.Vector2(550, groundY),
                 new System.Numerics.Vector2(680, groundY - 180),
@@ -970,7 +970,7 @@ namespace RunnerRobot
         }
 
         private static void DrawGround(int screenWidth, float groundY, float groundOffset)
-        {
+    {
             Raylib.DrawRectangle(0, (int)groundY, screenWidth, 120, new Color(22, 18, 44, 255));
             Raylib.DrawRectangle(0, (int)groundY - 1, screenWidth, 3, new Color(0, 240, 255, 255));
             Raylib.DrawRectangle(0, (int)groundY + 2, screenWidth, 2, new Color(0, 160, 220, 180));
@@ -978,9 +978,9 @@ namespace RunnerRobot
             int spacing = 48;
             int shift = (int)(groundOffset % spacing);
             for (int x = -shift; x < screenWidth + spacing; x += spacing)
-            {
+        {
                 Raylib.DrawLine(x, (int)groundY + 4, x - 20, (int)groundY + 110, new Color(0, 180, 230, 60));
-            }
+        }
 
             Raylib.DrawLine(0, (int)groundY + 35, screenWidth, (int)groundY + 35, new Color(0, 180, 230, 45));
             Raylib.DrawLine(0, (int)groundY + 75, screenWidth, (int)groundY + 75, new Color(0, 180, 230, 30));
@@ -1047,7 +1047,7 @@ namespace RunnerRobot
             Raylib.DrawCircleLines((int)cx, (int)cy, radius - 3, new Color(180, 240, 255, 140));
 
             for (int i = 0; i < 4; i++)
-            {
+        {
                 float angle = animTime * 4f + (i * (float)Math.PI / 2f);
                 int ox = (int)(cx + Math.Cos(angle) * (radius - 2));
                 int oy = (int)(cy + Math.Sin(angle) * (radius - 2));
@@ -1063,7 +1063,7 @@ namespace RunnerRobot
             Raylib.DrawRectangle(bx - 14, by + 1, 12, 3, new Color(255, 140, 0, 160));
             Raylib.DrawRectangle(bx, by, 16, 5, new Color(255, 240, 50, 255));
             Raylib.DrawRectangle(bx + 4, by + 1, 10, 3, new Color(255, 255, 255, 255));
-        }
+    }
 
         private static void DrawGroundObstacle(GroundObstacle obs)
         {
@@ -1087,13 +1087,13 @@ namespace RunnerRobot
                     new Color(255, 160, 60, 255));
             }
             else if (obs.Type == 1)
-            {
+    {
                 Raylib.DrawRectangle(ox, oy, ow, oh, new Color(60, 30, 40, 255));
                 Raylib.DrawRectangle(ox + 3, oy + 3, ow - 6, oh - 6, new Color(180, 40, 60, 255));
                 Raylib.DrawRectangle(ox + 7, oy + (oh / 2) - 3, ow - 14, 6, new Color(255, 220, 0, 255));
             }
             else
-            {
+        {
                 Raylib.DrawRectangle(ox + 6, oy, ow - 12, oh, new Color(80, 50, 100, 255));
                 Raylib.DrawRectangle(ox, oy, ow, 10, new Color(255, 50, 100, 255));
                 Raylib.DrawCircle(ox + ow / 2, oy + 5, 4f, new Color(255, 255, 255, 255));
@@ -1122,7 +1122,7 @@ namespace RunnerRobot
 
             Raylib.DrawRectangle(ex + 10, ey, 14, 4, darkMetal);
             Raylib.DrawRectangle(ex + 10, ey + eh - 4, 14, 4, darkMetal);
-        }
+    }
 
         private static void DrawHealthHeart(HealthPickup hp, float animTime)
         {
@@ -1147,7 +1147,7 @@ namespace RunnerRobot
 
             Raylib.DrawRectangle(hx + 5, hy + 5, 3, 3, Color.White);
             Raylib.DrawRectangle(hx + 16, hy + 5, 2, 2, heartLight);
-        }
+}
 
         private static void DrawShieldOrb(ShieldPickup sh, float animTime)
         {
